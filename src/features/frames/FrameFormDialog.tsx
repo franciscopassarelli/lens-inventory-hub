@@ -53,7 +53,7 @@ const emptyState = (): FormState => ({
 export function FrameFormDialog({ open, onOpenChange, frame }: Props) {
   const { brands, createFrame, updateFrame, createBrand } = useInventory();
   const [form, setForm] = React.useState<FormState>(emptyState());
-  const [errors, setErrors] = React.useState<Record<string, string>>({});
+  const [errors, setErrors] = React.useState<{ code?: string; brandId?: string; entryDate?: string }>({});
   const [newBrand, setNewBrand] = React.useState("");
   const [saving, setSaving] = React.useState(false);
 
@@ -84,7 +84,7 @@ export function FrameFormDialog({ open, onOpenChange, frame }: Props) {
     setForm((prev) => ({ ...prev, [key]: value }));
 
   const validate = () => {
-    const next: Record<string, string> = {};
+    const next: { code?: string; brandId?: string; entryDate?: string } = {};
     if (!form.code.trim()) next.code = "El código es obligatorio.";
     if (!form.brandId) next.brandId = "Seleccioná una marca.";
     if (!form.entryDate) next.entryDate = "La fecha de ingreso es obligatoria.";
