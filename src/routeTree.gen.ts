@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ArmazonesRouteImport } from './routes/armazones'
+import { Route as ConfiguracionRouteImport } from './routes/configuracion'
+import { Route as ExportarRouteImport } from './routes/exportar'
+import { Route as MarcasRouteImport } from './routes/marcas'
+import { Route as MovimientosRouteImport } from './routes/movimientos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArmazonesRoute = ArmazonesRouteImport.update({
+  id: '/armazones',
+  path: '/armazones',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfiguracionRoute = ConfiguracionRouteImport.update({
+  id: '/configuracion',
+  path: '/configuracion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExportarRoute = ExportarRouteImport.update({
+  id: '/exportar',
+  path: '/exportar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarcasRoute = MarcasRouteImport.update({
+  id: '/marcas',
+  path: '/marcas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MovimientosRoute = MovimientosRouteImport.update({
+  id: '/movimientos',
+  path: '/movimientos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/armazones': typeof ArmazonesRoute
+  '/configuracion': typeof ConfiguracionRoute
+  '/exportar': typeof ExportarRoute
+  '/marcas': typeof MarcasRoute
+  '/movimientos': typeof MovimientosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/armazones': typeof ArmazonesRoute
+  '/configuracion': typeof ConfiguracionRoute
+  '/exportar': typeof ExportarRoute
+  '/marcas': typeof MarcasRoute
+  '/movimientos': typeof MovimientosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/armazones': typeof ArmazonesRoute
+  '/configuracion': typeof ConfiguracionRoute
+  '/exportar': typeof ExportarRoute
+  '/marcas': typeof MarcasRoute
+  '/movimientos': typeof MovimientosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/armazones'
+    | '/configuracion'
+    | '/exportar'
+    | '/marcas'
+    | '/movimientos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/armazones'
+    | '/configuracion'
+    | '/exportar'
+    | '/marcas'
+    | '/movimientos'
+  id:
+    | '__root__'
+    | '/'
+    | '/armazones'
+    | '/configuracion'
+    | '/exportar'
+    | '/marcas'
+    | '/movimientos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ArmazonesRoute: typeof ArmazonesRoute
+  ConfiguracionRoute: typeof ConfiguracionRoute
+  ExportarRoute: typeof ExportarRoute
+  MarcasRoute: typeof MarcasRoute
+  MovimientosRoute: typeof MovimientosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/armazones': {
+      id: '/armazones'
+      path: '/armazones'
+      fullPath: '/armazones'
+      preLoaderRoute: typeof ArmazonesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configuracion': {
+      id: '/configuracion'
+      path: '/configuracion'
+      fullPath: '/configuracion'
+      preLoaderRoute: typeof ConfiguracionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exportar': {
+      id: '/exportar'
+      path: '/exportar'
+      fullPath: '/exportar'
+      preLoaderRoute: typeof ExportarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marcas': {
+      id: '/marcas'
+      path: '/marcas'
+      fullPath: '/marcas'
+      preLoaderRoute: typeof MarcasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movimientos': {
+      id: '/movimientos'
+      path: '/movimientos'
+      fullPath: '/movimientos'
+      preLoaderRoute: typeof MovimientosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ArmazonesRoute: ArmazonesRoute,
+  ConfiguracionRoute: ConfiguracionRoute,
+  ExportarRoute: ExportarRoute,
+  MarcasRoute: MarcasRoute,
+  MovimientosRoute: MovimientosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
